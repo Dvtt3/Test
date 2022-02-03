@@ -6,7 +6,7 @@ services:
       context: site/ 
       dockerfile: Dockerfile 
     ports:
-      -8080:80
+      - 5001:80
     volumes:
       - ./site:/var/www/html/
   site2:
@@ -15,17 +15,18 @@ services:
       context: site/ 
       dockerfile: Dockerfile 
     ports:
-      -8081:80
+      - 5002:80
     volumes:
       - ./site:/var/www/html/
-    nginx:
-      build:
-        context: nginx/
-      ports:
-        -8080:80
-      depens_on:
-        -sites
-        -site2
+    
+  nginx:
+    build:
+      context: nginx/
+    ports:
+      - 8080:80
+    depends_on:
+      - site
+      - site2
 
       
 
