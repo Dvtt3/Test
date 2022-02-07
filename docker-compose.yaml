@@ -28,6 +28,24 @@ services:
       - site
       - site2
 
+  db:
+    image: mariadb:10.2 
+    restart: always
+    environment:
+      MYSQL_DATABASE: lb
+      MYSQL_USER: matte
+      MYSQL-PASSWORD: matte
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db-dump:/var/lib/mysql
+
+volumes:
+  db:
+
+
+
       
 
     
